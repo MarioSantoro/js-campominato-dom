@@ -3,7 +3,9 @@ button.addEventListener("click", function(){
     const mainElement = document.querySelector("main");
     mainElement.innerHTML = "";
     let len = 0;
-
+    let temp = 0;
+    let bool = true;
+    
     const selectElement = document.querySelector("select").value;
     const root = document.querySelector(":root");
     const rootStyle = getComputedStyle(root);
@@ -18,9 +20,17 @@ button.addEventListener("click", function(){
         len = 49;
         root.style.setProperty("--cells" , 7);
     }
-
+    
     const newGridElement = createGridNormal();
     mainElement.appendChild(newGridElement);
+    
+    const bomb = randomBomb(len-1 , 16);
+    console.log(bomb);
+
+
+    //******************
+    //Funzioni
+    //********************
 
     function createCellsNormal(){
         const cellElement = document.createElement("div");
@@ -42,15 +52,24 @@ button.addEventListener("click", function(){
                 listBomb.push(randomNumber);
             }
         }
-       
         return listBomb;
-
     }
 
-    const bomb = randomBomb(len-1 , 2);
-    console.log(bomb)
-    let temp = 0;
-    let bool = true;
+    function ResultLose(){
+        const resultGame = document.createElement("span");
+        resultGame.innerHTML = "Hai perso!!";
+        resultGame.classList.add("fs-1" ,  "ms-custom");
+        mainElement.appendChild(resultGame);
+    }
+
+    function ResultWin(punteggio){
+        const resultGame = document.createElement("span");
+        resultGame.innerHTML = `Hai vinto!! Punteggio : ${punteggio}`;
+        resultGame.classList.add("fs-1" ,  "ms-custom");
+        mainElement.appendChild(resultGame);
+    }
+
+    function CheckResult(){
         for(let i=1; i<len + 1;i++){
             const newCellsElement = createCellsNormal();
             newCellsElement.innerHTML = i;
@@ -58,27 +77,24 @@ button.addEventListener("click", function(){
                 if(bool){
                     if(bomb.includes(i)){
                         newCellsElement.classList.add("toggle-red");
-                        const resultGame = document.createElement("span");
-                        resultGame.innerHTML = "Hai perso!!";
-                        resultGame.classList.add("fs-1" ,  "ms-custom")
-                        mainElement.appendChild(resultGame);
                         bool = false;
+                        ResultLose();
                     }else{
                         if(!newCellsElement.classList.contains("toggle")){
                             temp++;
                         }
                         newCellsElement.classList.add("toggle"); 
-                        
-                        console.log(temp);
                         if(temp === len - bomb.length){
-                            mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
-                            bool = false;
+                            ResultWin(temp);
                         }
                     }
                 }  
-                
             }); 
             newGridElement.appendChild(newCellsElement);
         }
+    }
+
+    CheckResult();
+       
     
 })
