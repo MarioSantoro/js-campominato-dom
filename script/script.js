@@ -47,7 +47,7 @@ button.addEventListener("click", function(){
 
     }
 
-    const bomb = randomBomb(len-1 , 16);
+    const bomb = randomBomb(len-1 , 2);
     console.log(bomb)
     let temp = 0;
 
@@ -63,8 +63,8 @@ button.addEventListener("click", function(){
                 temp ++;
                 console.log(temp)
             }
-            if(temp === len-16){
-                mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!</span>`;
+            if(temp === len-2){
+                mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
             }
         });
         newGridElement.appendChild(newCellsElement);
