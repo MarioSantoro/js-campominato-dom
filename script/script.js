@@ -58,11 +58,16 @@ button.addEventListener("click", function(){
                 if(bool){
                     if(bomb.includes(i)){
                         newCellsElement.classList.add("toggle-red");
-                        mainElement.append("Hai perso!!");
+                        const resultGame = document.createElement("span");
+                        resultGame.innerHTML = "Hai perso!!";
+                        resultGame.classList.add("fs-1" ,  "ms-custom")
+                        mainElement.appendChild(resultGame);
                         bool = false;
                     }else{
                         newCellsElement.classList.add("toggle"); 
-                        temp ++;
+                        if(newCellsElement.classList.contains("toggle")){
+                            temp++;
+                        }
                         console.log(temp);
                         if(temp === len - bomb.length){
                             mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
