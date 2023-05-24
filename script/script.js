@@ -64,10 +64,11 @@ button.addEventListener("click", function(){
                         mainElement.appendChild(resultGame);
                         bool = false;
                     }else{
-                        newCellsElement.classList.add("toggle"); 
-                        if(newCellsElement.classList.contains("toggle")){
+                        if(!newCellsElement.classList.contains("toggle")){
                             temp++;
                         }
+                        newCellsElement.classList.add("toggle"); 
+                        
                         console.log(temp);
                         if(temp === len - bomb.length){
                             mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
