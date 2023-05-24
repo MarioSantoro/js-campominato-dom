@@ -50,23 +50,29 @@ button.addEventListener("click", function(){
     const bomb = randomBomb(len-1 , 2);
     console.log(bomb)
     let temp = 0;
-
-    for(let i=1; i<len + 1;i++){
-        const newCellsElement = createCellsNormal();
-        newCellsElement.innerHTML = i;
-        newCellsElement.addEventListener("click" , function(){
-            if(bomb.includes(i)){
-                newCellsElement.classList.add("toggle-red");
-                mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai perso!!</span>`;
-            }else{
-                newCellsElement.classList.add("toggle"); 
-                temp ++;
-                console.log(temp)
-            }
-            if(temp === len-2){
-                mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
-            }
-        });
-        newGridElement.appendChild(newCellsElement);
-    }
+    let bool = true;
+        for(let i=1; i<len + 1;i++){
+            const newCellsElement = createCellsNormal();
+            newCellsElement.innerHTML = i;
+            newCellsElement.addEventListener("click" , function (){
+                if(bool){
+                    if(bomb.includes(i)){
+                        newCellsElement.classList.add("toggle-red");
+                        mainElement.append("Hai perso!!");
+                        bool = false;
+                    }else{
+                        newCellsElement.classList.add("toggle"); 
+                        temp ++;
+                        console.log(temp);
+                        if(temp === len - bomb.length){
+                            mainElement.innerHTML += `<span class="fs-1 ms-custom">Hai vinto!!  Punteggio: ${temp}</span>`;
+                            bool = false;
+                        }
+                    }
+                }  
+                
+            }); 
+            newGridElement.appendChild(newCellsElement);
+        }
+    
 })
