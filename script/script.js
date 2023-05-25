@@ -98,6 +98,7 @@ button.addEventListener("click", function(){
                         </span>`
                         newCellsElement.classList.add("toggle"  , "text-black"); 
                         if(temp === len - bomb.length){
+                            score.innerHTML="";
                             ResultWin(temp);
                         }
                     }
