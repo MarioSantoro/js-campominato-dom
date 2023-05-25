@@ -55,9 +55,9 @@ button.addEventListener("click", function(){
         return listBomb;
     }
 
-    function ResultLose(){
+    function ResultLose(punteggio){
         const resultGame = document.createElement("span");
-        resultGame.innerHTML = "Hai perso!!";
+        resultGame.innerHTML = `Hai perso!! Punteggio : ${punteggio}`;
         resultGame.classList.add("fs-1" ,  "ms-custom");
         mainElement.appendChild(resultGame);
     }
@@ -72,18 +72,26 @@ button.addEventListener("click", function(){
     function CheckResult(){
         for(let i=1; i<len + 1;i++){
             const newCellsElement = createCellsNormal();
-            newCellsElement.innerHTML = i;
+            newCellsElement.classList.add("shadow")
+            if(bomb.includes(i)){
+                newCellsElement.classList.add("bomb" , "text-color-background");
+                newCellsElement.innerHTML = `<i class="fa-solid fa-bomb"></i>`
+            }
             newCellsElement.addEventListener("click" , function (){
                 if(bool){
                     if(bomb.includes(i)){
-                        newCellsElement.classList.add("toggle-red");
+                        newGridElement.classList.add("game-over");
+                        newCellsElement.classList.remove("text-color-background")
                         bool = false;
-                        ResultLose();
+                        ResultLose(temp);
                     }else{
                         if(!newCellsElement.classList.contains("toggle")){
                             temp++;
                         }
-                        newCellsElement.classList.add("toggle"); 
+                        newCellsElement.innerHTML = `<span class="material-symbols-outlined">
+                        local_florist
+                        </span>`
+                        newCellsElement.classList.add("toggle"  , "text-black"); 
                         if(temp === len - bomb.length){
                             ResultWin(temp);
                         }
@@ -94,7 +102,7 @@ button.addEventListener("click", function(){
         }
     }
 
-    CheckResult();
-       
-    
+    CheckResult();  
+     
 })
+

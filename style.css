@@ -29,7 +29,7 @@ main{
 
 
 .toggle{
-    background-color: rgba(15, 156, 156, 0.63);
+    background-color:rgba(0, 183, 255, 0.61);
     color: white;
     font-weight: bold;
 }
@@ -45,4 +45,18 @@ main{
    left: 50%;
    top: 9%;
    transform: translateX(-50%);
+}
+
+div.grid-Normal.game-over div.bomb{
+    background-color: red;
+    color:black;
+    box-shadow: 0px -23px 25px 0px rgba(0, 0, 0, 0.17) inset, 0px -36px 30px 0px rgba(0, 0, 0, 0.15) inset, 0px -79px 40px 0px rgba(0, 0, 0, 0.1) inset, 0px 2px 1px rgba(0, 0, 0, 0.06), 0px 4px 2px rgba(0, 0, 0, 0.09), 0px 8px 4px rgba(0, 0, 0, 0.09), 0px 16px 8px rgba(0, 0, 0, 0.09);
+}
+
+.text-color-background{
+    color: #7fffd4;
+}
+
+.shadow{
+    box-shadow: 0px -23px 25px 0px rgba(0, 0, 0, 0.17) inset, 0px -36px 30px 0px rgba(0, 0, 0, 0.15) inset, 0px -79px 40px 0px rgba(0, 0, 0, 0.1) inset, 0px 2px 1px rgba(0, 0, 0, 0.06), 0px 4px 2px rgba(0, 0, 0, 0.09), 0px 8px 4px rgba(0, 0, 0, 0.09), 0px 16px 8px rgba(0, 0, 0, 0.09);
 }
