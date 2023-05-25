@@ -73,27 +73,26 @@ button.addEventListener("click", function(){
     function CheckResult(){
         for(let i=1; i<len + 1;i++){
             const newCellsElement = createCellsNormal();
-            newCellsElement.classList.add("shadow")
             if(bomb.includes(i)){
                 newCellsElement.classList.add("bomb" , "text-color-background");
                 newCellsElement.innerHTML = `<i class="fa-solid fa-bomb"></i>`
             }
             newCellsElement.addEventListener("click" , function (){
                 if(bool){
-                    score.innerHTML = "Punteggio :" + temp;
-                    score.classList.add("fs-1" , "ms-custom")
-                    mainElement.appendChild(score)
-                    console.log(score)
                     if(bomb.includes(i)){
                         newGridElement.classList.add("game-over");
                         newCellsElement.classList.remove("text-color-background");
-                        score.innerHTML = "";
                         bool = false;
+                        score.innerHTML="";
                         ResultLose(temp);
                     }else{
                         if(!newCellsElement.classList.contains("toggle")){
                             temp++;
+                            console.log(temp)
                         }
+                        score.innerHTML = `Punteggio : ${temp} `;
+                        score.classList.add("fs-1" , "ms-custom");
+                        mainElement.appendChild(score);
                         newCellsElement.innerHTML = `<span class="material-symbols-outlined">
                         local_florist
                         </span>`
