@@ -1,6 +1,7 @@
 const button = document.querySelector("button");
 button.addEventListener("click", function(){
     const mainElement = document.querySelector("main");
+    const score =  document.createElement("span");
     mainElement.innerHTML = "";
     let len = 0;
     let temp = 0;
@@ -79,9 +80,14 @@ button.addEventListener("click", function(){
             }
             newCellsElement.addEventListener("click" , function (){
                 if(bool){
+                    score.innerHTML = "Punteggio :" + temp;
+                    score.classList.add("fs-1" , "ms-custom")
+                    mainElement.appendChild(score)
+                    console.log(score)
                     if(bomb.includes(i)){
                         newGridElement.classList.add("game-over");
-                        newCellsElement.classList.remove("text-color-background")
+                        newCellsElement.classList.remove("text-color-background");
+                        score.innerHTML = "";
                         bool = false;
                         ResultLose(temp);
                     }else{
