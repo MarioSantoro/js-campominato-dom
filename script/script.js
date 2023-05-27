@@ -6,6 +6,7 @@ button.addEventListener("click", function(){
     let len = 0;
     let temp = 0;
     let bool = true;
+    let numberBomb = parseInt(prompt("Quante bombe vuoi?"));
     
     const selectElement = document.querySelector("select").value;
     const root = document.querySelector(":root");
@@ -25,7 +26,7 @@ button.addEventListener("click", function(){
     const newGridElement = createGridNormal();
     mainElement.appendChild(newGridElement);
     
-    const bomb = randomBomb(len-1 , 16);
+    const bomb = randomBomb(len-1 , numberBomb);
     console.log(bomb);
 
 
@@ -84,6 +85,9 @@ button.addEventListener("click", function(){
                         newCellsElement.classList.remove("text-color-background");
                         bool = false;
                         score.innerHTML="";
+                        setTimeout(function(){
+                            newGridElement.innerHTML = '<img class="img-fluid" src="./img/bomb.gif" alt="logo boolean">'
+                        },1500);
                         ResultLose(temp);
                     }else{
                         if(!newCellsElement.classList.contains("toggle")){
@@ -100,7 +104,9 @@ button.addEventListener("click", function(){
                         if(temp === len - bomb.length){
                             score.innerHTML="";
                             ResultWin(temp);
+                            bool = false;
                         }
+                        
                     }
                 }  
             }); 
